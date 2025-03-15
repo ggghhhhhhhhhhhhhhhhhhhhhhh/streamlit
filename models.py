@@ -1,6 +1,9 @@
 from sqlalchemy import Column, Integer, String, Text, Boolean, create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
-
+# Initialize database connection
+DATABASE_URL = "sqlite:///instance/recoverease.db"
+engine = create_engine(DATABASE_URL)
+SessionLocal = sessionmaker(bind=engine)
 Base = declarative_base()
 
 class User(Base):
@@ -26,7 +29,4 @@ class FoundItem(Base):
     contact_info = Column(String(100), nullable=False)
     item_desc = Column(Text, nullable=False)
 
-# Initialize database connection
-DATABASE_URL = "sqlite:///instance/recoverease.db"
-engine = create_engine(DATABASE_URL)
-SessionLocal = sessionmaker(bind=engine)
+
